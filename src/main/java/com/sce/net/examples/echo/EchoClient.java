@@ -1,7 +1,7 @@
 package com.sce.net.examples.echo;
 
-import com.sce.net.pack.DataMessage;
-import com.sce.net.pack.DataPack;
+import com.sce.net.pack.TLVMessage;
+import com.sce.net.pack.TLVDataPack;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,12 +30,12 @@ public class EchoClient {
   }
 
   private static void handle(InputStream input, OutputStream output) throws IOException {
-    DataPack pack = new DataPack();
+    TLVDataPack pack = new TLVDataPack();
     String request = "hello world";
     byte[] value = request.getBytes(Charset.defaultCharset());
-    DataMessage dataMessage = new DataMessage(0, value.length);
-    dataMessage.setBody(value);
-    byte[] data = pack.pack(dataMessage);
+    TLVMessage message = new TLVMessage(0, value.length);
+    message.setBody(value);
+    byte[] data = pack.pack(message);
     while (true) {
 
       output.write(data);

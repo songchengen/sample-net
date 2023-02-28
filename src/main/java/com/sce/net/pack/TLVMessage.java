@@ -5,13 +5,13 @@ package com.sce.net.pack;
  * @version 0.0.1
  * @date 2023/2/28
  */
-public class DataMessage implements Message {
+public class TLVMessage implements Message {
 
   private int msgId;
   private int msgLen;
   private byte[] body;
 
-  public DataMessage(int msgId, int msgLen) {
+  public TLVMessage(int msgId, int msgLen) {
     this.msgId = msgId;
     this.msgLen = msgLen;
   }

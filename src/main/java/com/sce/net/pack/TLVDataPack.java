@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
  * @version 0.0.1
  * @date 2023/2/28
  */
-public class DataPack implements Pack {
+public class TLVDataPack implements Pack {
 
   @Override
   public int getHeadLen() {
@@ -32,7 +32,7 @@ public class DataPack implements Pack {
     int msgId = buffer.getInt();
     int msgLen = buffer.getInt();
 
-    return new DataMessage(msgId, msgLen);
+    return new TLVMessage(msgId, msgLen);
   }
 
 }

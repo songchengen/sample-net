@@ -3,7 +3,7 @@ package com.sce.net.server;
 import com.sce.net.context.BaseContext;
 import com.sce.net.context.Context;
 import com.sce.net.handler.Handler;
-import com.sce.net.pack.DataPack;
+import com.sce.net.pack.TLVDataPack;
 import com.sce.net.pack.Message;
 import com.sce.net.pack.Pack;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.net.Socket;
  */
 public class BaseServer extends AbstractServer implements Server {
 
-  private final Pack pack = new DataPack();
+  private final Pack pack = new TLVDataPack();
 
   public BaseServer() throws IOException {
     super();

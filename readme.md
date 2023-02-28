@@ -1,5 +1,7 @@
 # sample net
 
+一个非常简单的TCP服务器，消息通过简单的TLV格式封装，标识域作为消息ID，与一个路由绑定。未来可能还会提供beforeHandle和afterHandle的hook。
+
 ## Usage
 
 期望能达到的效果

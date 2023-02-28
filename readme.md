@@ -1,6 +1,8 @@
 # sample net
 
-## usage
+## Usage
+
+期望能达到的效果
 
 ```java
 Server server = new BaseServer(8080);

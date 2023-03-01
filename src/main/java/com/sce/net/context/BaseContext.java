@@ -80,6 +80,5 @@ public class BaseContext implements Context {
   @Override
   public void bytes(byte[] value) throws IOException {
     output.write(value);
-    output.flush();
   }
 }

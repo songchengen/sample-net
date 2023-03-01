@@ -33,11 +33,11 @@ public class BaseServer extends AbstractServer implements Server {
     try (
         InputStream input = socket.getInputStream()
     ) {
-      while (true) {
+      while (!socket.isClosed()) {
+
         // 1. 解析字节流转换成 Message
         byte[] headData = input.readNBytes(pack.getHeadLen());
         Message msg = pack.unpack(headData);
-
         if (msg.getMsgLen() > 0) {
           byte[] data = input.readNBytes(msg.getMsgLen());
           msg.setBody(data);
@@ -46,12 +46,13 @@ public class BaseServer extends AbstractServer implements Server {
         }
 
         // 2. 生成Context上下文
-        Context ctx = new BaseContext(socket, msg);
+        BaseContext ctx = new BaseContext(socket, msg);
         // 3. 调用消息体路由函数
         Handler handler = getHandlers(msg.getMsgId());
-
         handler.handle(ctx);
 
+        // 刷洗缓冲区
+        socket.getOutputStream().flush();
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -61,6 +62,5 @@ public class BaseServer extends AbstractServer implements Server {
         ee.printStackTrace();
       }
     }
-
   }
 }
